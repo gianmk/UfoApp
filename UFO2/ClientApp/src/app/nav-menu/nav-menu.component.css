@@ -1,0 +1,45 @@
+@font-face {
+  font-family: stars;
+  src: url("/assets/fonts/Starcruiser-Ewe4.otf") format("opentype");
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#nav {
+  margin: 0px;
+  background-color: aquamarine;
+}
+
+.starlogo {
+  font-family: stars;
+}
+
+.logo{
+  padding-bottom: 0px;
+  height: 50px;
+  font-family: stars;
+}
+.icon {
+  padding: 0px;
+}
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}

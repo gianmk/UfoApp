@@ -1,0 +1,57 @@
+<div class="container">
+
+<div class="intro">
+    <div class="row">
+        <div class="col">
+            <h2>Welcome to The UFO Hub!</h2><br>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-8">
+            Here you can register your UFO observations and read about other people strange experiences.
+            Did you encounter visit from another planet, or maybe you only had a little to much of the waccy baccy?
+            Do aliens exists or are we all alone? All we know is, that the truth is out there.
+            Please, have a look around our page and don't forget to register.
+            <br><br> Always remember: “space is big. You just won't believe how vastly, hugely, mind-bogglingly big it is. I mean, you may think it's a long way down the road to the chemist's, but that's just peanuts to space.”
+            ― Douglas Adams
+        </div>
+        <div class="col">
+            <img class="img" src="/assets/ufo2.svg">
+        </div>
+    </div>
+</div>
+
+<div class="gradient1"></div>
+
+<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder=" Search UFO sightings">
+<br />
+
+<div fxLayout="row wrap">
+    <mat-card class="listcard" *ngFor="let Ufo of Ufoer| filter:searchText | paginate: { itemsPerPage: 5, currentPage: p }" [routerLink]="['/editUfo', Ufo.id]" fxLayoutGap="20px">
+
+
+        <mat-card-header>
+            <mat-card-title>Ufo Sighting</mat-card-title>
+            <mat-card-subtitle> Seen at {{Ufo.country}}, {{Ufo.state}}, {{Ufo.location}} </mat-card-subtitle>
+            <mat-card-subtitle> Date and Time : {{Ufo.date_time}}, {{Ufo.time}} </mat-card-subtitle>
+        </mat-card-header>
+        <br />
+        <mat-card-content>
+            <p><strong>Shape:</strong> {{Ufo.shape}}</p>
+            <p><strong>Duration:</strong> {{Ufo.duration}}</p>
+            <p><strong>Description:</strong> {{Ufo.text}} </p>
+
+        </mat-card-content>
+        <mat-card-actions>
+            
+            <button mat-button [routerLink]="['/comment', Ufo.id]">{{ Ufo.commentcount }}<mat-icon class="icon-comment">comment</mat-icon> </button>
+
+        </mat-card-actions>
+
+
+    </mat-card>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>

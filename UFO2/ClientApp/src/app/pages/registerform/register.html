@@ -1,0 +1,28 @@
+<div></div>
+<form [formGroup]="registerskjema"
+      (ngSubmit)="register()">
+    <div class="form-group"></div>
+    <div class="form-group">
+        <h2>Register</h2>
+        <label for="uname">Username</label>
+        <input class="form-control" formControlName="regUsername" id="reguname" />
+        <small id="uname" class="text-danger"
+               [hidden]="registerskjema.controls.regUsername.valid || (registerskjema.controls.regUsername.pristine && !submitted)">
+            Enter username, minium 6 characters
+        </small>
+
+    </div>
+
+    <div class="form-group">
+        <label for="pass">Password</label>
+        <input type="password" class="form-control" formControlName="regPassword" id="regpass" />
+        <small id="pass" class="text-danger"
+               [hidden]="registerskjema.controls.regPassword.valid || (registerskjema.controls.regPassword.pristine && !submitted)"  >
+             Enter password, minimum 6 characters
+        </small>
+        <span [ngClass]="(status == 1) ? 'text-success' : 'text-danger'"> {{feedback}} </span>
+    </div>
+    <button type="submit" class="btn btn-outline-primary" [disabled]="!registerskjema.valid">Register</button>
+   
+</form>
+

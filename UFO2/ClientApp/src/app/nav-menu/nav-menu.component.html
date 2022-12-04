@@ -1,0 +1,54 @@
+<header>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-0"
+  >
+      <div class="container">
+
+          <a class="navbar-brand logo" [routerLink]="['/']">
+              <img src="/assets/alien.svg" width="40px" height="40px" alt="Logo" class="icon">
+              The UFO Hub
+          </a>
+
+          <button class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse"
+                  aria-label="Toggle navigation"
+                  [attr.aria-expanded]="isExpanded"
+                  (click)="toggle()">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+               [ngClass]="{ show: isExpanded }">
+              <ul class="navbar-nav flex-grow">
+
+
+                  <li class="nav-item" [routerLinkActive]="['link-active']">
+
+                      <button _ngcontent-serverapp-c1="" class="btn btn-danger btn-sm report my-2 my-sm-0 animated tada slow" [routerLink]="['/regUfo']" type="button" tabindex="0">Register sighting</button>
+
+                  </li> &nbsp;&nbsp;
+
+                  <li class="nav-item" [routerLinkActive]="['link-active']">
+
+                    <button _ngcontent-serverapp-c1="" class="btn btn-info btn-sm report my-2 my-sm-0 animated tada slow" [routerLink]="['/overview']" type="button" tabindex="0">Overview</button>
+
+                  </li> &nbsp;&nbsp;
+
+                  <li class="nav-item" [routerLinkActive]="['link-active']">
+                      <button _ngcontent-serverapp-c1="" class="btn btn-success btn-sm report my-2 my-sm-0 animated tada slow" [routerLink]="['/login']" type="button" tabindex="0">Login</button>
+
+                  </li>
+               
+                  <li class="nav-item">
+                      <div *ngIf="userLoggedIn">
+                          <a class="nav-link" href="/"> EX TRUE </a>
+                      </div>
+                  </li>
+          
+          </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+

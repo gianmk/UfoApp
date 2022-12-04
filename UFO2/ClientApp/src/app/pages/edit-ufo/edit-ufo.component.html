@@ -1,0 +1,162 @@
+<div class="content">
+    <h1>Edit UFO Observation </h1>
+    <br />
+    <div class="map">
+
+        <iframe frameborder="0" style="border:0"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+                [src]="('https://www.google.com/maps/embed/v1/place?key=AIzaSyCj_kCutHo0A7LljtdhPh7lmrq8itELt7g&q='+
+            maplocation) | safe"
+                class="shadow-lg ng-star-inserted" id="map">
+        </iframe>
+    </div>
+    <div class="editform">
+        <form #f=ngForm (ngSubmit)=" f.form.valid">
+
+
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select class="form-control" name="Country" id="Country" (change)="getStates($event)" title="Country" [(ngModel)]="editUfo.country" #country='ngModel' pattern="[0-9a-zA-ZæøåÆØÅ. ()-]{1,50}" required>
+                    <option>{{editUfo.country}}</option>
+                    <option [ngValue]="null">Please select Country</option>
+                    <option *ngFor="let countries of countries" [value]="countries.name">{{countries.name}} </option>
+                </select>
+            </div>
+
+            <div *ngIf="country.invalid && (country.dirty || country.touched)"
+                 class="alert alert-danger">
+
+                <div *ngIf="country.errors?.required">
+                    Country is required. Please select a country
+                </div>
+                <div *ngIf="country.errors?.pattern">
+                    Please select a valid Country.
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="type">State</label>
+                <select class="form-control" id="type" (change)="noStates($event.target.value)" [(ngModel)]="editUfo.state" #state='ngModel' [ngModelOptions]="{standalone: true}" pattern="[0-9a-zA-ZæøåÆØÅ., ()-]{1,50}" required>
+                    <option [ngValue]="null">Please select State</option>
+                    <option>{{editUfo.state}}</option>
+                    <option *ngFor="let state of states" [value]="state.name">{{state.name}} </option>
+                    <option>No states available, write in state</option>
+                </select>
+                <div *ngIf="state.invalid && (state.dirty || state.touched)"
+                     class="alert alert-danger">
+
+                    <div *ngIf="state.errors?.required">
+                        State is required. Please select a state
+                    </div>
+                    <div *ngIf="state.errors?.pattern">
+                        Please select a valid State.
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="newState" [innerHtml]="newState | safeHtml"> </div>
+
+            </div>
+            <div class="form-group">
+                <label for="location">Location of sightings</label>
+                <input type="text" class="form-control" id="location" name="location" [(ngModel)]="editUfo.location" #location='ngModel' pattern="[0-9a-zA-ZæøåÆØÅ. \-]{1,50}" required>
+
+                <div *ngIf="location.invalid && (location.dirty || location.touched)"
+                     class="alert alert-danger">
+
+                    <div *ngIf="location.errors?.required">
+                        Required. Please type in location of the sightning
+                    </div>
+                    <div *ngIf="location.errors?.pattern">
+                        Wrong input.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date_time" name="date" [(ngModel)]="editUfo.date_time" #date='ngModel' pattern="[0-9a-zA-ZæøåÆØÅ. \ .:-]{1,50}" required>
+
+                <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                     class="alert alert-danger">
+
+                    <div *ngIf="date.errors?.required">
+                        Required. Please put correct date
+                    </div>
+                    <div *ngIf="date.errors?.pattern">
+                        Please write in a valid date
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Time">Time</label>
+                <input type="time" class="form-control" id="Time" name="time" [(ngModel)]="editUfo.time" #time='ngModel' pattern="[0-9. \ .:-]{1,50}" required>
+
+                <div *ngIf="time.invalid && (time.dirty || time.touched)"
+                     class="alert alert-danger">
+
+                    <div *ngIf="time.errors?.required">
+                        Required. Please put correct time
+                    </div>
+                    <div *ngIf="time.errors?.pattern">
+                        Please write in a valid time.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Shape">Shape</label>
+                <input type="text" class="form-control" id="shape" name="shape" [(ngModel)]="editUfo.shape" #shape='ngModel' pattern="[a-zA-ZæøåÆØÅ. \-]{1,50}" required>
+
+                <div *ngIf="shape.invalid && (shape.dirty || shape.touched)"
+                     class="alert alert-danger">
+
+                    <div *ngIf="shape.errors?.required">
+                        Required. Please type in the shape of Ufo
+                    </div>
+                    <div *ngIf="shape.errors?.pattern">
+                        Wrong input. Numbers not allowed.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="duration">Duration</label>
+                <input type="text" class="form-control" id="duration" name="duration" [(ngModel)]="editUfo.duration" #duration='ngModel' pattern="[0-9a-zA-ZæøåÆØÅ. \ .:-]{1,50}" required>
+
+                <div *ngIf="duration.invalid && (duration.dirty || duration.touched)"
+                     class="alert alert-danger">
+
+                    <div *ngIf="duration.errors?.required">
+                        Required. Please type in the duration of sighting
+                    </div>
+                    <div *ngIf="duration.errors?.pattern">
+                        Wrong input.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="summary">Description</label>
+                <textarea class="form-control" rows="5" [(ngModel)]="editUfo.text" name="summary" id="summary" placeholder="Description of the incident" #summary='ngModel' required></textarea>
+
+                <div *ngIf="summary.invalid && (summary.dirty || summary.touched)"
+                     class="alert alert-danger">
+
+                    <div *ngIf="summary.errors?.required">
+                        Required. Please type in the description of sighting
+                    </div>
+
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="updateUfo()">Update</button> &nbsp;&nbsp;
+            <button class="btn btn-danger" (click)="deleteUfo(editUfo.id)">Delete</button>
+
+        </form>
+    </div>
+</div>
